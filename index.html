@@ -1,70 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Webcam Audio Visualizer | Demo 1 | Codrops</title>
-    <meta name="description" content="Demo of the tutorial on how to create a Three.js powered audio visualizer that takes input from the webcam." />
-    <meta name="keywords" content="three.js, audio visualizer, webcam, web development, javascript, webgl" />
-    <meta name="author" content="Codrops" />
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/base.css" />
-    <script>
-    document.documentElement.className = "js";
-    var supportsCssVars = function() {
-        var e, t = document.createElement("style");
-        return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e
-    };
-    supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
-    </script>
-  
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <!--css-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--libraries-->
+        <script type="text/javascript" src="js/three.min.js"></script>
+        <script type="text/javascript" src="js/dat.gui.min.js"></script>
+        <!--tools-->
+        <script type="text/javascript" src="js/AudioAnalyzer.js"></script>
+        <script type="text/javascript" src="js/ThreeSharedRenderer.js"></script>
+        <script type="text/javascript" src="js/ThreePBR.js"></script>
+        <script type="text/javascript" src="js/ThreePointLight.js"></script>
+        <script type="text/javascript" src="js/DeviceChecker.js"></script>
+        <!--shaders-->
+        <script type="text/javascript" src="shaders/blob.vert.js"></script>
+        <script type="text/javascript" src="shaders/blob.frag.js"></script>
+        <script type="text/javascript" src="shaders/skybox.vert.js"></script>
+        <script type="text/javascript" src="shaders/skybox.frag.js"></script>
+        <!--objects-->
+        <script type="text/javascript" src="js/NoiseBlob.js"></script>
+        <script type="text/javascript" src="js/Ctrl.js"></script>
+        <!--main-->
+        <script type="text/javascript" src="js/script.js"></script>
         
+         <script>
+        function PlayAudio() {
+          var audio = document.getElementById("music");
+          audio.play();
+          audio.onended = function() {
+            audio.play();
+          };
+        }
         
-</head>
 
-
-
-
-
-
-<body class="demo-1 cda-noimg cda-naked cda-alignright">
-
-
-
-
-
-    <main>
+        </script>
         
-        <div id="content" class="content">
-            <video id="video" class="hidden"></video>
-            <div id="message" class="hidden">Please allow camera access.</div>
-            
-            
-         
-
-
-
-        </div>
-    </main>
+    </head>
+    <body onload="PlayAudio()">
     
+     <div class="overlay">
+        <img src="marte.png">
+     </div>
     
-    
-    <div class="overlay">
-  <img src="2.png">
-</div>
-
-    
-    <div class="layer">
-    <script src="index.js"></script>
-
-    </div>
-    
-    
-    
-    
-    
-</body>
-
+     <div class="layer">
+        <canvas>
+          <audio id="music" loop>
+            <source src="audio/hr.mp3" type="audio/mpeg"> 
+          </audio>
+        </canvas>
+     </div>
+      
+    </body>
 </html>
